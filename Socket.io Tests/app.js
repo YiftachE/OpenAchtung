@@ -1,10 +1,15 @@
 (function() {
-    var http = require('http');
-    http.createServer(function(req, res) {
-        res.writeHead(200, {
-            'Content-Type': 'text/plain'
-        });
-        res.end("hello world");
-    }).listen(8080);
+    var http = require('http').createServer();
+    var server=require('socket.io')(http);
+    server.on('connection',function(socket){
+      console.log("aaa");
+      socket.on('event',function(data){
+
+      });
+      socket.on('disconnect',function(){
+
+      });
+    });
+    server.listen(3000);
 }());
 
