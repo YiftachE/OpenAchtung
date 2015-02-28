@@ -1,16 +1,15 @@
 (function() {
-    var http = require('http');
-    var io = require('socket.io')(http);
+    var http = require('http').createServer();
+    var server=require('socket.io')(http);
+    server.on('connection',function(socket){
+      console.log("aaa");
+      socket.on('event',function(data){
 
-    io.on('connection', function(socket){
-        console.log('a user connected');
+      });
+      socket.on('disconnect',function(){
+
+      });
     });
-
-    http.createServer(function(req, res) {
-        res.writeHead(200, {
-            'Content-Type': 'text/plain'
-        });
-        res.end("hello world");
-    }).listen(8080);
+    server.listen(3000);
 }());
 
